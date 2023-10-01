@@ -1,6 +1,5 @@
 <?php
 require_once '../dbcon.php';
-
 //value receive from the input field in the variable
 if (isset($_POST['student_register'])) {
     $fname = $_POST['fname'];
@@ -11,7 +10,6 @@ if (isset($_POST['student_register'])) {
     $roll = $_POST['roll'];
     $reg = $_POST['reg'];
     $phone = $_POST['phone'];
-
     //made array and store the empty error in the array
     $input_errors = array();
 
@@ -52,8 +50,8 @@ if (isset($_POST['student_register'])) {
 
         $email_check = mysqli_query($con, "SELECT * FROM `students` WHERE `email` = '$email'  ");
         $email_check_row = mysqli_num_rows($email_check);
-
-     
+           
+    
 
         if ($email_check_row == 0) {
 
@@ -61,8 +59,17 @@ if (isset($_POST['student_register'])) {
             $username_check_row = mysqli_num_rows($username_check);
                
             if ($username_check_row == 0) {
+                if(strlen($username)>7){
+                    if(strlen($password)>7){
 
-                //nothing do here
+                    }else{
+                        $password_error = "Password should more than 8 characters";
+                    }
+
+                }else{
+                    $username_exists = "Username should more than 8 characters";
+                }
+
             } else {
                 $username_exists = "This  userame already exists";
             }
@@ -70,15 +77,15 @@ if (isset($_POST['student_register'])) {
             $email_exists = "This email already exists";
         }
 
-       
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-        $result = mysqli_query($con, "INSERT INTO `students`(`fname`, `lname`, `roll`, `reg`, `email`, `username`, `password`, `status`, `phone`) VALUES ('$fname', '$lname', '$roll', '$reg', '$email', '$username', '$password_hash','0', '$phone')");
+        // $result = mysqli_query($con, "INSERT INTO `students`(`fname`, `lname`, `roll`, `reg`, `email`, `username`, `password`, `status`, `phone`) VALUES ('$fname', '$lname', '$roll', '$reg', '$email', '$username', '$password_hash','0', '$phone')");
         // if ($result) {
         //     $success = "Registration Successfully";
         // } else {
         //     $error = "Something Wrong";
         // }
+
 
         if (mysqli_query($con, $result)) {
             echo "Record inserted successfully!";
@@ -89,7 +96,6 @@ if (isset($_POST['student_register'])) {
                 echo "Error: " . mysqli_error($con);
             }
         }
-
 
     }
 }
@@ -157,6 +163,19 @@ if (isset($_POST['student_register'])) {
                     </div>
                 <?php   }
                 ?>
+
+<?php
+                if (isset($username_exists)) { ?>
+                    <div class="alert alert-danger " role="alert">
+                        <?php echo $username_exists ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php   }
+                ?>
+
+
 
             </div>
             <div class="box">
