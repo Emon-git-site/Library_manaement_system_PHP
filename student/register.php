@@ -1,7 +1,7 @@
 <?php
 require_once '../dbcon.php';
 
-//value receive from the input field in the variable
+// value receive from the input field in the variable
 if (isset($_POST['student_register'])) {
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -54,15 +54,27 @@ if (isset($_POST['student_register'])) {
         $email_check_row = mysqli_num_rows($email_check);
 
      
-
+            //if duplicate email not found then run if block
         if ($email_check_row == 0) {
 
             $username_check = mysqli_query($con, "SELECT * FROM `students` WHERE `username` = '$username'  ");
             $username_check_row = mysqli_num_rows($username_check);
                
+            //if duplicate user not found then run if block
             if ($username_check_row == 0) {
 
                 if(strlen($username) > 7){
+
+                    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+                    $result = mysqli_query($con, "INSERT INTO `students`(`fname`, `lname`, `roll`, `reg`, `email`, `username`, `password`, `status`, `phone`) VALUES ('$fname', '$lname', '$roll', '$reg', '$email', '$username', '$password_hash','0', '$phone')");
+                    
+            
+                  
+                  
+                    if ($result) {
+                        $con_success = "Record inserted successfully!";
+                    }
 
                 }else{
                     $username_exists = "Username should more than 8 characters";
@@ -75,25 +87,7 @@ if (isset($_POST['student_register'])) {
         }
 
        
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
-        $result = mysqli_query($con, "INSERT INTO `students`(`fname`, `lname`, `roll`, `reg`, `email`, `username`, `password`, `status`, `phone`) VALUES ('$fname', '$lname', '$roll', '$reg', '$email', '$username', '$password_hash','0', '$phone')");
-        // if ($result) {
-        //     $success = "Registration Successfully";
-        // } else {
-        //     $error = "Something Wrong";
-        // }
-
-        if (mysqli_query($con, $result)) {
-            echo "Record inserted successfully!";
-        } else {
-            if (mysqli_errno($con) == 1062) {
-                echo "Duplicate entry error: This value already exists in the database.";
-            } else {
-                echo "Error: " . mysqli_error($con);
-            }
-        }
-
+      
 
     }
 }
@@ -130,6 +124,8 @@ if (isset($_POST['student_register'])) {
             <!--LOGO-->
             <div class="logo">
                 <h1 class="text-center">LMS</h1>
+
+                 <!-- show the registratoin success message -->
                 <?php
                 if (isset($success)) { ?>
                     <div class="alert alert-success " role="alert">
@@ -140,6 +136,8 @@ if (isset($_POST['student_register'])) {
                     </div>
                 <?php   }
                 ?>
+
+                 <!-- show the registration Failed error message -->
                 <?php
                 if (isset($error)) { ?>
                     <div class="alert alert-danger " role="alert">
@@ -150,7 +148,7 @@ if (isset($_POST['student_register'])) {
                     </div>
                 <?php   }
                 ?>
-
+                    <!-- show the duplicate email error message -->
                 <?php
                 if (isset($email_exists)) { ?>
                     <div class="alert alert-danger " role="alert">
@@ -162,7 +160,7 @@ if (isset($_POST['student_register'])) {
                 <?php   }
                 ?>
 
-
+                <!-- show the duplicate username error message -->
                 <?php
                 if (isset($username_exists)) { ?>
                     <div class="alert alert-danger " role="alert">
@@ -173,6 +171,18 @@ if (isset($_POST['student_register'])) {
                     </div>
                 <?php   }
                 ?>
+                    <!-- value successfully insert into database -->
+                 <?php
+                if (isset($con_success)) { ?>
+                    <div class="alert alert-danger " role="alert">
+                        <?php echo $con_success ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php   }
+                ?>
+
             </div>
             <div class="box">
                 <!--SIGN IN FORM-->
