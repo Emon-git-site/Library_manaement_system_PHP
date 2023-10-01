@@ -62,7 +62,11 @@ if (isset($_POST['student_register'])) {
                
             if ($username_check_row == 0) {
 
-                //nothing do here
+                if(strlen($username) > 7){
+
+                }else{
+                    $username_exists = "Username should more than 8 characters";
+                }
             } else {
                 $username_exists = "This  userame already exists";
             }
@@ -158,6 +162,17 @@ if (isset($_POST['student_register'])) {
                 <?php   }
                 ?>
 
+
+                <?php
+                if (isset($username_exists)) { ?>
+                    <div class="alert alert-danger " role="alert">
+                        <?php echo $username_exists ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php   }
+                ?>
             </div>
             <div class="box">
                 <!--SIGN IN FORM-->
