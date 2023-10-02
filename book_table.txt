@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS books(
+    id int(5) PRIMARY KEY  AUTO_INCREMENT,
+    book_name varchar(70),
+    book_image varchar(100),
+    book_author_name varchar(50),
+    book_publication_name varchar(50),
+    book_publication_date varchar(50),
+    book_price varchar(10),
+    book_qty int(5),
+    available_qty int(5),
+    libraian_username varchar(50)
+    );
+  
