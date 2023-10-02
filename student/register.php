@@ -2,7 +2,7 @@
 require_once '../dbcon.php';
 session_start();
 
-if(isset( $_SESSION['student_login'] )){
+if (isset($_SESSION['student_login'])) {
     header('location:index.php');
 }
 
@@ -52,36 +52,35 @@ if (isset($_POST['student_register'])) {
         $input_errors['phone'] = "phone field is required";
     }
 
-  // if any field empty, then found error
+    // if any field empty, then found error
     if (count($input_errors) == 0) {
 
         $email_check = mysqli_query($con, "SELECT * FROM `students` WHERE `email` = '$email'  ");
         $email_check_row = mysqli_num_rows($email_check);
 
-     
-            //if duplicate email not found then run if block
+
+        //if duplicate email not found then run if block
         if ($email_check_row == 0) {
 
             $username_check = mysqli_query($con, "SELECT * FROM `students` WHERE `username` = '$username'  ");
             $username_check_row = mysqli_num_rows($username_check);
-               
+
             //if duplicate user not found then run if block
             if ($username_check_row == 0) {
 
-                if(strlen($username) > 7){
+                if (strlen($username) > 7) {
 
                     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
                     $result = mysqli_query($con, "INSERT INTO `students`(`fname`, `lname`, `roll`, `reg`, `email`, `username`, `password`, `status`, `phone`) VALUES ('$fname', '$lname', '$roll', '$reg', '$email', '$username', '$password_hash','0', '$phone')");
-                    
-            
-                  
-                  
+
+
+
+
                     if ($result) {
                         $con_success = "Record inserted successfully!";
                     }
-
-                }else{
+                } else {
                     $username_exists = "Username should more than 8 characters";
                 }
             } else {
@@ -90,10 +89,6 @@ if (isset($_POST['student_register'])) {
         } else {
             $email_exists = "This email already exists";
         }
-
-       
-      
-
     }
 }
 ?>
@@ -130,7 +125,7 @@ if (isset($_POST['student_register'])) {
             <div class="logo">
                 <h1 class="text-center">LMS</h1>
 
-                 <!-- show the registratoin success message -->
+                <!-- show the registratoin success message -->
                 <?php
                 if (isset($success)) { ?>
                     <div class="alert alert-success " role="alert">
@@ -142,7 +137,7 @@ if (isset($_POST['student_register'])) {
                 <?php   }
                 ?>
 
-                 <!-- show the registration Failed error message -->
+                <!-- show the registration Failed error message -->
                 <?php
                 if (isset($error)) { ?>
                     <div class="alert alert-danger " role="alert">
@@ -153,7 +148,7 @@ if (isset($_POST['student_register'])) {
                     </div>
                 <?php   }
                 ?>
-                    <!-- show the duplicate email error message -->
+                <!-- show the duplicate email error message -->
                 <?php
                 if (isset($email_exists)) { ?>
                     <div class="alert alert-danger " role="alert">
@@ -176,8 +171,8 @@ if (isset($_POST['student_register'])) {
                     </div>
                 <?php   }
                 ?>
-                    <!-- value successfully insert into database -->
-                 <?php
+                <!-- value successfully insert into database -->
+                <?php
                 if (isset($con_success)) { ?>
                     <div class="alert alert-success " role="alert">
                         <?php echo $con_success ?>

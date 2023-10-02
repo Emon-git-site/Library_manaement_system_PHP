@@ -3,7 +3,7 @@ $page = explode('/', $_SERVER['PHP_SELF']);
 $page = end($page);
 require_once '../dbcon.php';
 session_start();
-if(!isset( $_SESSION['libraian_login'] )){
+if (!isset($_SESSION['libraian_login'])) {
     header('location:login.php');
 }
 
@@ -19,7 +19,7 @@ if(!isset( $_SESSION['libraian_login'] )){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>LMS</title>
-    
+
     <!--load progress bar-->
     <script src="../assets/vendor/pace/pace.min.js"></script>
     <link href="../assets/vendor/pace/pace-theme-minimal.css" rel="stylesheet" />
@@ -53,7 +53,7 @@ if(!isset( $_SESSION['libraian_login'] )){
             <div class="leftside-header">
                 <div class="logo">
                     <a href="index.php" class="on-click">
-                       <h3>LMS</h3>
+                        <h3>LMS</h3>
                     </a>
                 </div>
                 <div id="menu-toggle" class="visible-xs toggle-left-sidebar" data-toggle-class="left-sidebar-open" data-target="html">
@@ -63,11 +63,11 @@ if(!isset( $_SESSION['libraian_login'] )){
             <!-- RIGHTSIDE header -->
             <div class="rightside-header">
                 <div class="header-middle"></div>
-              
+
                 <!--NOCITE HEADERBOX-->
                 <div class="header-section hidden-x  s" id="notice-headerbox">
-                   
-                  
+
+
                     <!--alerts notices-->
                     <div class="notice" id="alerts-notice">
                         <i class="fa fa-bell-o" aria-hidden="true"><span class="badge badge-xs badge-top-right x-danger">7</span></i>
@@ -153,7 +153,7 @@ if(!isset( $_SESSION['libraian_login'] )){
                         <div class="drop-content basic">
                             <ul>
                                 <li> <a href=""><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
-                               
+
                             </ul>
                         </div>
                     </div>
@@ -185,9 +185,9 @@ if(!isset( $_SESSION['libraian_login'] )){
                         <nav>
                             <ul class="nav nav-left-lines" id="main-nav">
                                 <!--HOME-->
-                                <li class="<?= $page == 'index.php' ? 'active-item': '' ?>"><a href="index.php"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
-                                <li class="<?= $page == 'students.php' ? 'active-item': '' ?>"><a href="students.php"><i class="fa fa-users " aria-hidden="true"></i><span>students</span></a></li>
-                              
+                                <li class="<?= $page == 'index.php' ? 'active-item' : '' ?>"><a href="index.php"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
+                                <li class="<?= $page == 'students.php' ? 'active-item' : '' ?>"><a href="students.php"><i class="fa fa-users " aria-hidden="true"></i><span>students</span></a></li>
+
 
                             </ul>
                         </nav>
