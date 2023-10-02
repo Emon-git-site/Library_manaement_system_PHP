@@ -1,5 +1,10 @@
 <?php
 require_once '../dbcon.php';
+session_start();
+
+if(isset( $_SESSION['student_login'] )){
+    header('location:index.php');
+}
 
 // value receive from the input field in the variable
 if (isset($_POST['student_register'])) {
