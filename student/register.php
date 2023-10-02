@@ -174,7 +174,7 @@ if (isset($_POST['student_register'])) {
                     <!-- value successfully insert into database -->
                  <?php
                 if (isset($con_success)) { ?>
-                    <div class="alert alert-danger " role="alert">
+                    <div class="alert alert-success " role="alert">
                         <?php echo $con_success ?>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
