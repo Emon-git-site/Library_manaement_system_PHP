@@ -53,9 +53,9 @@ require_once 'header.php';
                                     <td><?= $row['available_qty'] ?></td>
                                     <td>
 
-                                        <button class="btn btn-info" data-toggle="modal" data-target="#book-<?= $row['id'] ?>"><i class="fa fa-pencil"></i></button>
-                                        <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                                        <button class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                                        <a class="btn btn-info" data-toggle="modal" data-target="#book-<?= $row['id'] ?>"><i class="fa fa-pencil"></i></a>
+                                        <a class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                                        <a href="delete.php?bookdelete=<?= base64_encode($row['id']) ?>" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')" ><i class="fa fa-trash-o"></i></a>
                                     </td>
 
 
