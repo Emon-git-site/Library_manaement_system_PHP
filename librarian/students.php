@@ -49,7 +49,7 @@ require_once 'header.php';
                                     <td><?= $row['roll'] ?></td>
                                     <td><?= $row['reg'] ?></td>
                                     <td><?= $row['email'] ?></td>
-                                    <td><?= $row['username']; $row_action = $row['username']; ?></td>
+                                    <td><?= $row['username'] ?></td>
                                     <td><?= $row['phone'] ?></td>
                                     <td><img src="<?= $row['image'] ?>" alt=""></td>
                                     <td><?= $row['status'] == 1 ? 'active' : 'inactive' ?></td>
@@ -58,12 +58,12 @@ require_once 'header.php';
                                         if ($row['status'] == 1) {
 
                                          
-                                        ?> <a href="status_inactive.php?status=<?= base64_encode($row['status'])  ?> &username=<?=  $row_action  ?>" class="btn btn-primary"><i class="fa fa-arrow-up"></i></a>
+                                        ?> <a href="status_inactive.php?id=<?=  $row['id']  ?>" class="btn btn-primary"><i class="fa fa-arrow-up"></i></a>
                                            
                                         <?php
                                         } else {
                                         ?>
-                                            <a href="status_active.php?status=<?= base64_encode($row['status'])  ?> &username=<?=  $row_action  ?>" class="btn btn-warning"><i class="fa fa-arrow-down"></i></a>
+                                            <a href="status_active.php?id=<?=  $row['id']  ?>" class="btn btn-warning"><i class="fa fa-arrow-down"></i></a>
                                         <?php
                                         }
                                         ?>

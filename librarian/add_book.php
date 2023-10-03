@@ -3,11 +3,16 @@ require_once 'header.php';
 
 if(isset($_POST['save_book'])){
     $book_name = $_POST['book_name'];
-    $book_name = $_POST['book_name'];
-    $book_name = $_POST['book_name'];
-    $book_name = $_POST['book_name'];
-    $book_name = $_POST['book_name'];
-    $book_name = $_POST['book_name'];
+    $book_author_name = $_POST['book_author_name '];
+    $book_publication_name = $_POST['book_publication_name'];
+    $book_purchase_date = $_POST['book_purchase_date'];
+    $book_price = $_POST['book_price'];
+    $book_qty = $_POST['book_qty'];
+    $available_qty = $_POST['available_qty'];
+
+    mysqli_query($conn, "INSERT INTO `books`(`book_name`, `book_image`, 
+    `book_author_name`, `book_publication_name`, `book_publication_date`,
+     `book_price`, `book_qty`, `available_qty`, `libraian_username`) VALUES ('$book_name','$book_author_name','','', '', '','', '', '', '', '')")
 }
 ?>
 

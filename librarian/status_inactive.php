@@ -1,11 +1,11 @@
 <?php
 require_once '../dbcon.php';
 
-$status = base64_decode($_GET['status']);
-$user_name = $_GET['username'];
+
+$user_id = $_GET['id'];
 
 
 
-mysqli_query($con, "UPDATE `students` SET  `status` ='0'  WHERE `status` = '$status' AND `username` ='$user_name'");
+mysqli_query($con, "UPDATE `students` SET  `status` ='0'  WHERE `id` ='$user_id'");
 header('location: students.php');
 ?>
