@@ -53,8 +53,8 @@ require_once 'header.php';
                                     <td><?= $row['available_qty'] ?></td>
                                     <td>
 
-                                        <a class="btn btn-info" data-toggle="modal" data-target="#book-<?= $row['id'] ?>"><i class="fa fa-pencil"></i></a>
-                                        <a class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                                        <a class="btn btn-info" data-toggle="modal" data-target="#book-<?= $row['id'] ?>"><i class="fa fa-eye"></i></a>
+                                        <a class="btn btn-warning"  data-toggle="modal" data-target="#book_update<?= $row['id'] ?>"> <i class="fa fa-pencil"></i> </a>
                                         <a href="delete.php?bookdelete=<?= base64_encode($row['id']) ?>" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')" ><i class="fa fa-trash-o"></i></a>
                                     </td>
 
@@ -129,6 +129,49 @@ while ($row = mysqli_fetch_assoc($result)) {
 
                         </tr>
                     </table>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php
+}
+?>
+
+<?php
+$result = mysqli_query($con, "SELECT * FROM `books`");
+while ($row = mysqli_fetch_assoc($result)) {
+
+?>
+    
+    <div class="modal fade" id="book_update<?= $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-info-label">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header state modal-info">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modal-info-label"><i class="fa fa-book"></i>update Book </h4>
+                </div>
+                <div class="modal-body">
+                <form  >
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
                 </div>
                 <div class="modal-footer">
 
