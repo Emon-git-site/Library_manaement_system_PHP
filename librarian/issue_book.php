@@ -1,5 +1,9 @@
 <?php
 require_once 'header.php';
+
+if(isset($_POST['issue_book'])){
+    print_r($_POST);
+}
 ?>
 
 <!-- content HEADER -->
@@ -16,31 +20,78 @@ require_once 'header.php';
 <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
 <div class="row animated fadeInUp">
     <div class="col-sm-6" col-sm-offset-3>
-    <div class="panel-content">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form class="form-inline" method="post" action="">  
-                                        <div class="form-group">
-                                       
-                                           <select name="student_id" class="form-control">
-                                            <option value=" ">Select</option>
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-inline" method="post" action="">
+                        <div class="form-group">
+
+                            <select name="student_id" class="form-control">
+                                <option value="">Select</option>
+                                <?php
+                                $result = mysqli_query($con, "SELECT * FROM `students` WHERE `status` = '1' ");
+                                while ($row = mysqli_fetch_assoc($result)) { ?>
+
+                                    <option value="<?= $row['id'] ?> "> <?= ucwords($row['fname'] . " " . $row['lname'] . "- ( " . $row['roll']) . ")" ?></option>
+                                <?php } ?>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" name="search" class="btn btn-primary">search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <?php
+            if (isset($_POST['search'])) {
+                $id = $_POST['student_id'];
+                $result = mysqli_query($con, "SELECT * FROM `students` WHERE  `id` = '$id' AND `status` = '1' ");
+                $row = mysqli_fetch_assoc($result);
+            ?>
+
+                <div class="panel">
+                    <div class="panel-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form method="post" action="">
+                                    <div class="form-group">
+                                        <label for="name">Student Name</label>
+                                        <input type="text" class="form-control" id="name" value="<?= ucwords($row['fname'] . " " . $row['lname'] . "- ( " . $row['roll']) . ")" ?>" readonly>
+                                        <input type="hidden" value="<?= $row['id'] ?>" name="student_id">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Book Name</label>
+                                        <select name="book_id" class="form-control">
+                                            <option value="">Select</option>
                                             <?php
-                                          $result = mysqli_query($con, "SELECT * FROM `students`");
-                                          while ($row = mysqli_fetch_assoc($result)){?>
-                                         
-                                         <option value=" "><?= ucwords( $row['fname']." ". $row['lname']."- ( ".$row['roll']). ")" ?></option>
+                                            $result = mysqli_query($con, "SELECT * FROM `books` WHERE `available_qty`>0;");
+                                            while ($row = mysqli_fetch_assoc($result)) { ?>
+
+                                                <option value="<?= $row['id'] ?>" > <?= $row['book_name'] ?></option>
                                             <?php } ?>
-                                        
-                                           </select>
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Book Issue Date</label>
+                                        <input type="text" class="form-control" name="book_issue_date" value="<?= date('d-m-Y')?>" readonly>
+
                                         </div>
-                                       
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">search</button>
-                                        </div>
-                                    </form>
-                                </div>
+                                    <div class="form-group">
+                                        <button type="submit" name="issue_book" class="btn btn-primary">Save Issue Book</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
+                    </div>
+                </div>
+            <?php
+
+            }
+            ?>
+        </div>
     </div>
 
 </div>
