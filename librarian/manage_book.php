@@ -23,7 +23,7 @@ require_once 'header.php';
                     <table id="basic-table" class="data-table table table-striped nowrap table-hover table-bordered" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th>Book-Name</th>
+                                <th>Book-Name </th>
                                 <th>Book Image</th>
                                 <th>Publication Name</th>
                                 <th>Author Name</th>
@@ -89,7 +89,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <div class="modal-body">
                     <table class="table table-bordered">
                         <tr>
-                            <th>Book-Name</th>
+                            <th>Book-Name </th>
                             <td><?= $row['book_name'] ?></td>
 
                         </tr>
@@ -139,6 +139,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     </div>
 
 <?php
+
 }
 ?>
 
@@ -149,6 +150,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     $id = $row['id'];
     $book_info = mysqli_query($con, "SELECT * FROM `books` WHERE `id` = '$id' ");
     $book_info_row = mysqli_fetch_assoc($book_info);
+
+
 ?>
 
     <div class="modal fade" id="book_update<?= $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-info-label">
@@ -158,20 +161,14 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="modal-info-label"><i class="fa fa-book"></i>update Book </h4>
                 </div>
-                
+
                 <div class="modal-body">
-                <form>
+                    <form method="post">
                         <div class="form-group">
                             <label for="book_name" class="col-sm-4 control-label">Book Name</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="book_name" name="book_name" value="<?= $book_info_row['book_name'] ?>" placeholder="Book Name" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="book_image" class="col-sm-4 control-label">Book Image</label>
-                            <div class="col-sm-8">
-                                <input type="file" class="form-control" id="book_image" name="book_image"  placeholder="Book Image" required>
-                                <img src="../images/books/<?= $book_info_row['book_image'] ?>" width="100px" alt="">
+                                <input type="text" class="form-control"  name="id" value="<?= $book_info_row['id'] ?>"  required>
                             </div>
                         </div>
 
@@ -194,15 +191,14 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 <input type="date" class="form-control" id="book_purchase_date" name="book_purchase_date" value="<?= $book_info_row['book_purchase_date'] ?>" placeholder="Purchase Date" required>
                             </div>
                         </div>
-                     
-                      
-                        <div class="form-group">
+
+                    `      <div class="form-group">
                             <label for="book_price" class="col-sm-4 control-label">Book Price</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="book_price" name="book_price" value="<?= $book_info_row['book_price'] ?>" placeholder="book_price"  required>
+                                <input type="number" class="form-control" id="book_price" name="book_price" value="<?= $book_info_row['book_price'] ?>" placeholder="book_price" required>
                             </div>
                         </div>
-                           
+
                         <div class="form-group">
                             <label for="book_qty" class="col-sm-4 control-label">Book Quantity</label>
                             <div class="col-sm-8">
@@ -229,6 +225,31 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 <?php
 }
+
+
+?>
+<?php
+if (isset($_POST['update_book'])) {
+  
+
+    $id = $_POST['id'];
+    $book_name = $_POST['book_name'];
+    $book_author_name = $_POST['book_author_name'];
+    $book_publication_name = $_POST['book_publication_name'];
+    $book_purchase_date = $_POST['book_purchase_date'];
+    $book_price = $_POST['book_price'];
+    $book_qty = $_POST['book_qty'];
+    $available_qty = $_POST['available_qty'];
+    $libraian_username = $_SESSION['libraian_username'];
+    
+
+    $result = mysqli_query($con, "UPDATE `books` SET `book_name`='$book_name',`book_author_name`='$book_author_name',
+    `book_publication_name`='$book_publication_name ',`book_purchase_date`='$book_purchase_date',`book_price`='$book_price',
+    `book_qty`='$book_qty',`available_qty`='$available_qty', `libraian_username`= '$libraian_username' WHERE `id`= '$id' ");
+
+    
+}
+
 ?>
 
 <?php
