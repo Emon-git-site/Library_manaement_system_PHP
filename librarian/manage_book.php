@@ -251,6 +251,7 @@ if($result){
     ?>
     <script type="text/javascript">
         alert('Book update successfully');
+        javascript:history.go(-1);
     </script>
     <?php
    } else{

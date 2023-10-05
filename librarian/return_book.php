@@ -31,12 +31,13 @@ require_once 'header.php';
                                 <th>Book Name</th>
                                 <th>Book Image</th>
                                 <th>Book Issue Date</th>
+                                <th>Return Book</th>
                             </tr>
                         </thead>
                         <tbody>
 
                             <?php
-                            $result = mysqli_query($con, " SELECT `issue_books`.`book_issue_date`, `students`.`fname`, `students`.`lname`, `students`.`roll`, 
+                            $result = mysqli_query($con, " SELECT `issue_books`.`id`, `issue_books`.`book_issue_date`, `students`.`fname`, `students`.`lname`, `students`.`roll`, 
                             `students`.`phone`, `books`.`book_name`, `books`.`book_image` FROM `issue_books` INNER JOIN `students` ON 
                             `students`.`id` = `issue_books`.`student_id` INNER JOIN `books` ON `books`.`id` = `issue_books`.`book_id` WHERE 
                             `issue_books`.`book_return_date` = '';");
@@ -51,6 +52,7 @@ require_once 'header.php';
                                     <td><?= $row['book_name'] ?></td>
                                     <td><img src="../images/books/<?= $row['book_image'] ?>" width="100px" alt=""></td>
                                     <td><?= $row['book_issue_date'] ?></td>
+                                    <td><a href="return_book.php?id=<?= $row['id'] ?>">Return Book</a></td>
 
 
                                 </tr>
@@ -68,7 +70,32 @@ require_once 'header.php';
 
 </div>
 
+<?php
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    $date = date('d-m-y');
+    mysqli_query($con, "UPDATE `issue_books` SET `book_return_date`='$date' WHERE `id` = '$id';"); 
 
+    if($result){ ?>
+
+        <script type="text/javascript">
+            alert("Book return successfully"); 
+            javascript:history.go(-1);
+        </script>
+
+        <?php
+    }else{
+        ?>
+
+        <script type="text/javascript">
+            alert("something wrong"); 
+        </script>
+
+        <?php
+
+    }
+}
+?>
 <?php
 require_once 'footer.php';
 ?>
