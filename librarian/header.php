@@ -6,6 +6,9 @@ session_start();
 if (!isset($_SESSION['libraian_login'])) {
     header('location:login.php');
 }
+$libraian_login = $_SESSION['libraian_login'];
+$data = mysqli_query($con, "SELECT * FROM `libraian` WHERE `email`= '$libraian_login' ");
+$libraian_info = mysqli_fetch_assoc($data );
 
 
 ?>
@@ -53,7 +56,7 @@ if (!isset($_SESSION['libraian_login'])) {
             <div class="leftside-header">
                 <div class="logo">
                     <a href="index.php" class="on-click">
-                        <h3>LMS</h3>
+                        <h3>LMS  </h3>
                     </a>
                 </div>
                 <div id="menu-toggle" class="visible-xs toggle-left-sidebar" data-toggle-class="left-sidebar-open" data-target="html">
@@ -143,7 +146,7 @@ if (!isset($_SESSION['libraian_login'])) {
                             <img alt="profile photo" src="../assets/images/avatar/avatar_user.jpg" />
                         </div>
                         <div class="user-info">
-                            <span class="user-name">Jane Doe</span>
+                            <span class="user-name"><?= ucwords($libraian_info['firstname']." ".$libraian_info['lastname'] ) ?></span>
                             <span class="user-profile">Admin</span>
                         </div>
                         <i class="fa fa-plus icon-open" aria-hidden="true"></i>
