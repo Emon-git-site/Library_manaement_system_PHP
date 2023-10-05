@@ -193,7 +193,12 @@ if (!isset($_SESSION['libraian_login'])) {
                                         <li class="<?= $page == 'add_book.php' ? 'active-item' : '' ?>" ><a href="add_book.php">Add Book</a></li>
                                         <li class="<?= $page == 'manage_book.php' ? 'active-item' : '' ?>"><a href="manage_book.php">Manage Book</a></li>
                                     </ul>
-                                    <li class="<?= $page == 'issue_book.php' ? 'active-item' : '' ?>"><a href="issue_book.php"><i class="fa fa-book" aria-hidden="true"></i><span>Issue Book</span></a></li>
+                                    <li class="<?= $page == 'issue_book.php' ? 'active-item' : '' ?>"><a href="issue_book.php">
+                                        <i class="fa fa-book" aria-hidden="true"></i><span>Issue Book</span></a></li>
+
+                                        <li class="<?= $page == 'return_book.php' ? 'active-item' : '' ?>"><a href="return_book.php">
+                                        <i class="fa fa-book" aria-hidden="true"></i><span>Return Book</span></a></li>
+
                                 </li>
 
                             </ul>
