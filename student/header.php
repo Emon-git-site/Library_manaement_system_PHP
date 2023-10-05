@@ -1,5 +1,5 @@
 <?php
-
+require_once '../dbcon.php';  
 
 $page = explode('/', $_SERVER['PHP_SELF']);
 
@@ -40,7 +40,8 @@ if(!isset( $_SESSION['student_login'] )){
     <!--TEMPLATE css-->
     <!-- ========================================================= -->
     <link rel="stylesheet" href="../assets/stylesheets/css/style.css">
-
+    <!--dataTable-->
+    <link rel="stylesheet" href="../assets/vendor/data-table/media/css/dataTables.bootstrap.min.css">
 
 </head>
 
