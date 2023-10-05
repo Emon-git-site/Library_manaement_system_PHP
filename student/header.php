@@ -187,7 +187,7 @@ if(!isset( $_SESSION['student_login'] )){
                             <ul class="nav nav-left-lines" id="main-nav">
                                 <!--HOME-->
                                 <li class="<?= $page == 'index.php' ? 'active-item': '' ?>"><a href="index.php"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
-                                <li class="<?= $page == 'test.php' ? 'active-item': '' ?>"><a href="test.php"><i class="fa fa-home" aria-hidden="true"></i><span>test</span></a></li>
+                                <li class="<?= $page == 'test.php' ? 'active-item': '' ?>"><a href="books.php"><i class="fa fa-book" aria-hidden="true"></i><span>Books</span></a></li>
                               
 
                             </ul>
