@@ -2,7 +2,24 @@
 require_once 'header.php';
 
 if(isset($_POST['issue_book'])){
-    print_r($_POST);
+    $student_id = $_POST['student_id'];
+    $book_id = $_POST['book_id'];
+    $book_issue_date = $_POST['book_issue_date'];
+    $Issue_book_result = mysqli_query($con, "INSERT INTO `issue_books`(`student_id`, `book_id`, `book_issue_date` ) VALUES ('$student_id','$book_id','$book_issue_date')");
+    if($Issue_book_result){
+        ?>
+        <script type="text/javascript">
+            alert('Book issued successfully');
+        </script>
+        <?php
+       } else{
+            ?>
+             <script type="text/javascript">
+            alert('Book not issue');
+        </script>
+
+        <?php } 
+    
 }
 ?>
 
@@ -18,8 +35,8 @@ if(isset($_POST['issue_book'])){
     </div>
 </div>
 <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
-<div class="row animated fadeInUp">
-    <div class="col-sm-6" col-sm-offset-3>
+<div class="row animated fadeInUp  ">
+    <div class="col-sm-12" col-sm-offset-3>
         <div class="panel-content">
             <div class="row">
                 <div class="col-md-12">

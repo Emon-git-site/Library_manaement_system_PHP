@@ -247,6 +247,19 @@ if (isset($_POST['update_book'])) {
     `book_publication_name`='$book_publication_name ',`book_purchase_date`='$book_purchase_date',`book_price`='$book_price',
     `book_qty`='$book_qty',`available_qty`='$available_qty', `libraian_username`= '$libraian_username' WHERE `id`= '$id' ");
 
+if($result){
+    ?>
+    <script type="text/javascript">
+        alert('Book update successfully');
+    </script>
+    <?php
+   } else{
+        ?>
+         <script type="text/javascript">
+        alert('Book not update');
+    </script>
+
+    <?php } 
     
 }
 
