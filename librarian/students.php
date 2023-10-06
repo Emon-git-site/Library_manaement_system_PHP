@@ -53,7 +53,7 @@ require_once 'header.php';
                                     <td><?= $row['email'] ?></td>
                                     <td><?= $row['username'] ?></td>
                                     <td><?= $row['phone'] ?></td>
-                                    <td><img src="<?= $row['image'] ?>" alt=""></td>
+                                    <td><img src="../images/students/<?= $row['student_image'] ?>" width="100px" height="100px" alt=""></td>
                                     <td><?= $row['status'] == 1 ? 'active' : 'inactive' ?></td>
                                     <td>
                                        <?php

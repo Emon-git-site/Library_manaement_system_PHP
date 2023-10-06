@@ -17,6 +17,11 @@ if (isset($_POST['student_register'])) {
     $reg = $_POST['reg'];
     $phone = $_POST['phone'];
 
+     // student image add
+     $image = explode('.', $_FILES['student_image'] ['name']);
+     $image_ext = end($image);
+     $image = date('Ymdhis.'). $image_ext;
+    
     //made array and store the empty error in the array
     $input_errors = array();
 
@@ -72,8 +77,16 @@ if (isset($_POST['student_register'])) {
 
                     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-                    $result = mysqli_query($con, "INSERT INTO `students`(`fname`, `lname`, `roll`, `reg`, `email`, `username`, `password`, `status`, `phone`) VALUES ('$fname', '$lname', '$roll', '$reg', '$email', '$username', '$password_hash','0', '$phone')");
+                    $result = mysqli_query($con, "INSERT INTO `students`(`fname`, `lname`, `student_image`, `roll`, `reg`, `email`, `username`, `password`, `status`, `phone`) VALUES ('$fname', '$lname', '$image', '$roll', '$reg', '$email', '$username', '$password_hash','0', '$phone')");
+                    
+                    if($result){
 
+                        move_uploaded_file($_FILES['student_image']['tmp_name'], '../images/students/'.$image);
+                
+                       
+                    }else{
+                        $error = "Data not save";
+                    }
 
 
 
@@ -190,7 +203,7 @@ if (isset($_POST['student_register'])) {
                 <!--SIGN IN FORM-->
                 <div class="panel mb-none">
                     <div class="panel-content bg-scale-0">
-                        <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+                        <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>" enctype="multipart/form-data">
                             <div class="form-group mt-md">
                                 <span class="input-with-icon">
                                     <input type="text" class="form-control" placeholder="First Name" name="fname" value="<?= isset($fname) ? $fname : '' ?>">
@@ -213,6 +226,15 @@ if (isset($_POST['student_register'])) {
                                 }
                                 ?>
                             </div>
+                            <!-- input student image here -->
+                            <div class="form-group mt-md">
+                                <span class="input-with-icon">
+                                    <input type="file" class="form-control"  name="student_image" required >
+                                    <i class="fa fa-image"></i>
+                                </span>
+                              
+                            </div>
+                                    <!-- email input -->
                             <div class="form-group mt-md">
                                 <span class="input-with-icon">
                                     <input type="email" class="form-control" placeholder="Email" name="email" value="<?= isset($email) ? $email : '' ?>">

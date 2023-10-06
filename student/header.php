@@ -11,6 +11,8 @@ if(!isset( $_SESSION['student_login'] )){
 $student_login = $_SESSION['student_login'];
 $data = mysqli_query($con, "SELECT * FROM `students` WHERE `email`= '$student_login' ");
 $student_info = mysqli_fetch_assoc($data );
+
+
 ?>
 
 <!doctype html>
@@ -142,7 +144,7 @@ $student_info = mysqli_fetch_assoc($data );
                 <div class="header-section" id="user-headerbox">
                     <div class="user-header-wrap">
                         <div class="user-photo">
-                            <img alt="profile photo" src="../assets/images/avatar/avatar_user.jpg" />
+                        <img src="../images/students/<?= $student_info ['student_image'] ?>" width="50px" height="50px" alt="">
                         </div>
                         <div class="user-info">
                             <span class="user-name"><?= ucwords($student_info['fname']." ".$student_info['lname'] ) ?></span>

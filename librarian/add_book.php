@@ -11,6 +11,7 @@ if(isset($_POST['save_book'])){
     $available_qty = $_POST['available_qty'];
     $librarian_username = $_SESSION['libraian_username'] ;
 
+    // book image add
     $image = explode('.', $_FILES['book_image'] ['name']);
     $image_ext = end($image);
     $image = date('Ymdhis.'). $image_ext;
