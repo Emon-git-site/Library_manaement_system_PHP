@@ -41,28 +41,44 @@ $result = mysqli_query($con, "SELECT * FROM `students`");
             line-height: 1em;
         }
     </style>
-</head>
+</head>      
 
-<body >
+<body onload="window.print()">
     <div class="print_area">
         <?php
+        
         $sl = 1;
         $page = 1;
         $total = mysqli_num_rows($result);
-        echo $total;
-
-        ?>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
+        $par_page = 35;
+        while($row = mysqli_fetch_assoc($result)){ 
+         if($sl % $par_page == 1){
+            echo page_header();
+         }
+         ?>
+        <tr>
+                    <td><?= $row['id'] ?></td>
+                    <td><?= $row['fname'].' '.$row['lname'] ?></td>
+                    <td><?= $row['roll'] ?></td>
+                    <td><?= $row['reg'] ?></td>
+                    <td><?= $row['email'] ?></td>
+                    <td><?= $row['username'] ?></td>
+                    <td><?= $row['phone'] ?></td>
+                    <td><?= $row['datetime'] ?></td>
+                   
                 </tr>
-        <?= page_footer() ?>  
+
+       <?php 
+        if($sl % $par_page == 0|| $total == $par_page){
+            echo $page_footer($page++);
+         }
+       $sl++; 
+       
+        }?>
+
+        
+               
+       
 
 </body>
 
@@ -90,11 +106,11 @@ function page_header()
                 </tr>';
     return $data;
 }
-function page_footer()
+function page_footer($page)
 {
     $data = '
     </table>
-    <div class="page_info">Page: -1</div>
+    <div class="page_info">Page:- '.$page.'</div>
 </div>
 </div>';
     return $data;

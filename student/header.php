@@ -145,7 +145,7 @@ if(!isset( $_SESSION['student_login'] )){
                         </div>
                         <div class="user-info">
                             <span class="user-name">Jane Doe</span>
-                            <span class="user-profile">Admin</span>
+                            <span class="user-profile">Student</span>
                         </div>
                         <i class="fa fa-plus icon-open" aria-hidden="true"></i>
                         <i class="fa fa-minus icon-close" aria-hidden="true"></i>
