@@ -124,6 +124,8 @@ if (isset($_POST['student_register'])) {
             <!--LOGO-->
             <div class="logo">
                 <h1 class="text-center">LMS</h1>
+                <h4 class="text-center"> Student Registration </h4>
+
 
                 <!-- show the registratoin success message -->
                 <?php

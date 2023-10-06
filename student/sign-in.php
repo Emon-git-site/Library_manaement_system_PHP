@@ -62,6 +62,7 @@ if (isset($_POST['login'])) {
             <!--LOGO-->
             <div class="logo">
                 <h1 class="text-center">LMS</h1>
+                <h4 class="text-center"> Student Login </h4>
                 <?php
                 if (isset($error)) { ?>
                     <div class="alert alert-danger " role="alert">
@@ -101,8 +102,7 @@ if (isset($_POST['login'])) {
                                 <input type="submit" value="sign in" class="btn btn-primary btn-block" name="login">
                             </div>
                             <div class="form-group text-center">
-                                <a href="pages_forgot-password.html">Forgot password?</a>
-                                <hr />
+                              
                                 <span>Don't have an account?</span>
                                 <a href="register.php" class="btn btn-block mt-sm">Register</a>
                             </div>

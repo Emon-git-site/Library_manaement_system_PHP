@@ -8,8 +8,9 @@ session_start();
 if(!isset( $_SESSION['student_login'] )){
     header('location:sign-in.php');
 }
-
-
+$student_login = $_SESSION['student_login'];
+$data = mysqli_query($con, "SELECT * FROM `students` WHERE `email`= '$student_login' ");
+$student_info = mysqli_fetch_assoc($data );
 ?>
 
 <!doctype html>
@@ -144,7 +145,7 @@ if(!isset( $_SESSION['student_login'] )){
                             <img alt="profile photo" src="../assets/images/avatar/avatar_user.jpg" />
                         </div>
                         <div class="user-info">
-                            <span class="user-name">Jane Doe</span>
+                            <span class="user-name"><?= ucwords($student_info['fname']." ".$student_info['lname'] ) ?></span>
                             <span class="user-profile">Student</span>
                         </div>
                         <i class="fa fa-plus icon-open" aria-hidden="true"></i>
