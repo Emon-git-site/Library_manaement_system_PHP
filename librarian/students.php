@@ -18,7 +18,9 @@ require_once 'header.php';
 <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
 <div class="row animated fadeInUp">
     <div class="col-sm-12">
-        <h4 class="section-subtitle"><b>All students</b></h4>
+        <div class="pull-left"><h4 class="section-subtitle"><b>All students</b></h4></div>
+        <div class="pull-right"> <a href="print_all_students.php" target="_blank" class="btn btn-primary" ><i class="fa fa-print"></i>Print</a></div>
+        <div class="clearfix"></div>
         <div class="panel">
             <div class="panel-content">
                 <div class="table-responsive">

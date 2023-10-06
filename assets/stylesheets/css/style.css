@@ -79,7 +79,7 @@ a:focus {
 /*================================================*/
 .page-body {
   display: block;
-  min-height: 100%;
+  min-height: 80%;
   width: 100%;
   overflow: hidden;
   padding-top: 50px;
@@ -96,7 +96,7 @@ a:focus {
   margin-left: 220px;
   padding: 30px;
   background: #ececec;
-  min-height: 100vh;
+  min-height: 80vh;
 }
 
 .content > .row + .row {
