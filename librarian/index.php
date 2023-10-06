@@ -24,7 +24,7 @@ require_once 'header.php';
             ?>
 
             <!--BOX Style 1-->
-            <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="col-md-4">
                 <div class="panel widgetbox wbox-1 bg-lighter-2 color-light">
                     <a href="students.php">
                         <div class="panel-content">
@@ -42,7 +42,7 @@ require_once 'header.php';
             ?>
 
             <!--BOX Style 1-->
-            <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="col-md-4">
                 <div class="panel widgetbox wbox-1 bg-lighter-2 color-light">
                     <a href="#">
                         <div class="panel-content">
@@ -63,7 +63,7 @@ require_once 'header.php';
             ?>
 
             <!--BOX Style 1-->
-            <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class=" col-md-4">
                 <div class="panel widgetbox wbox-1 bg-lighter-2 color-light">
                     <a href="manage_book.php">
                         <div class="panel-content">
